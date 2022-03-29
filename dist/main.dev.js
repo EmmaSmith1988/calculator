@@ -21,7 +21,7 @@ var buttonClear = document.querySelector(".buttons__clear");
 var buttonEquals = document.querySelector(".buttons__equals");
 var buttonDecimalPoint = document.querySelector(".buttons__decimalpoint");
 var display = document.querySelector(".display__text");
-var buttonsNumbers = document.querySelectorAll(".buttons__number"); // log the variable to the console on click
+var buttonsNumbers = document.querySelectorAll(".buttons__number"); // loop through the array of buttons and update the display based on what is clicked
 
 buttonsNumbers.forEach(function (button) {
   button.addEventListener("click", function () {
@@ -32,14 +32,31 @@ buttonsNumbers.forEach(function (button) {
 buttonClear.addEventListener("click", function () {
   display.innerHTML = "";
 }); // start performing calculations
-
-var addition = function addition(num1, num2) {
-  return num1 + num2;
-};
-
-var num1 = buttonPlus.addEventListener("click", function () {
-  var num = parseInt(display.innerHTML);
-  return num;
-}); // save what is in the display before + is clicked as a number
+// const addition = (num1, num2) => {
+//   return num1+num2;
+// }
+// const num1 = buttonPlus.addEventListener("click", () => {
+//   const num = parseInt(display.innerHTML);
+//   return num;
+// })
+// save what is in the display before + is clicked as a number
 // add + to the saved number
 // add what is in the display (as a number) when = is clicked
+
+buttonEquals.addEventListener("click", function () {
+  var resultString = display.innerHTML.split(/(?=[+-/*])|(?<=[+-/*])/g);
+  var firstNumber = parseInt(resultString[0]);
+  var symbol = resultString[1];
+  var secondNumber = parseInt(resultString[2]);
+
+  if (symbol == "+") {
+    display.innerHTML = firstNumber + secondNumber;
+  } else if (symbol == "-") {
+    display.innerHTML = firstNumber - secondNumber;
+  } else if (symbol == "*") {
+    display.innerHTML = firstNumber * secondNumber;
+  } else if (symbol == "/") {
+    display.innerHTML = firstNumber / secondNumber;
+  }
+}); // take the first element in the array and convert it to a number
+// take the third element in the array and convert it to a number

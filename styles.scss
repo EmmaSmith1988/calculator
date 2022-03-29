@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "digital";
+  src: url(./digital.ttf);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -21,10 +26,11 @@ body {
 .display {
   height: 50px;
   border-radius: 10px;
-  margin-bottom: 30px;
+  margin: 20px 10px 20px 10px;
   color: whitesmoke;
   font-size: 60px;
   text-align: end;
+  font-family: 'digital';
 }
 
 .buttons {
@@ -43,11 +49,41 @@ body {
     font-size: 20px;
   }
 
+  *:active {
+    box-shadow: inset 0px 0px 10px black;
+  }
+  
+
   &__number {
     background-color: hotpink;
   }
 
   &__symbol {
+    background-color: lightgray;
+  }
+
+  &__multiply {
     background-color: limegreen;
   }
+
+  &__minus {
+    background-color: limegreen;
+  }
+
+  &__divide {
+    background-color: limegreen;
+  }
+
+  &__plus {
+    background-color: limegreen;
+  }
+
+  &__equals {
+    background-color: limegreen;
+  }
+
+  &__hidden {
+    background-color: black;
+  }
 }
+

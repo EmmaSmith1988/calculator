@@ -21,14 +21,12 @@ const buttonDecimalPoint = document.querySelector(".buttons__decimalpoint")
 
 const display = document.querySelector(".display__text");
 
-
 const buttonsNumbers = document.querySelectorAll(".buttons__number");
 
-// log the variable to the console on click
+// loop through the array of buttons and update the display based on what is clicked
 buttonsNumbers.forEach((button) => {
   button.addEventListener("click", () => {
       display.innerHTML += button.innerHTML;
-  
   })
 })
 
@@ -38,18 +36,46 @@ buttonClear.addEventListener("click", () => {
 })
 
 // start performing calculations
-const addition = (num1, num2) => {
-  return num1+num2;
-}
+// const addition = (num1, num2) => {
+//   return num1+num2;
+// }
 
-const num1 = buttonPlus.addEventListener("click", () => {
-  const num = parseInt(display.innerHTML);
-  return num;
-})
-
-
+// const num1 = buttonPlus.addEventListener("click", () => {
+//   const num = parseInt(display.innerHTML);
+//   return num;
+// })
 
 // save what is in the display before + is clicked as a number
 // add + to the saved number
 // add what is in the display (as a number) when = is clicked
+
+buttonEquals.addEventListener("click", () => {
+  const resultString = display.innerHTML.split(/(?=[+-/*])|(?<=[+-/*])/g);
+  const firstNumber = parseInt(resultString[0]);
+  const symbol = resultString[1];
+  const secondNumber = parseInt(resultString[2]);
+  if (symbol == "+") {
+    display.innerHTML = firstNumber+secondNumber;
+  } else if (symbol == "-") {
+    display.innerHTML = firstNumber-secondNumber;
+  } else if (symbol == "*") {
+    display.innerHTML = firstNumber*secondNumber;
+  } else if (symbol == "/") {
+    display.innerHTML = firstNumber/secondNumber;
+  }
+})
+
+
+
+// take the first element in the array and convert it to a number
+
+
+// take the third element in the array and convert it to a number
+
+
+
+
+
+
+
 
