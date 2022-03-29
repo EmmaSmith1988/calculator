@@ -12,22 +12,39 @@ body {
 }
 
 .calculator {
-  width: 200px;
+  width: 250px;
   background-color: black;
   height: 400px;
+  border-radius: 5px;
 }
 
 .display {
   height: 50px;
-  background-color: grey;
   border-radius: 10px;
   margin-bottom: 30px;
+  color: whitesmoke;
+  font-size: 60px;
+  text-align: end;
 }
 
 .buttons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: 200px;
+  width: 250px;
   height: 300px;
-  margin: auto;
+  margin-left: 5px;
+}
+.buttons * {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: none;
+  color: whitesmoke;
+  font-size: 20px;
+}
+.buttons__number {
+  background-color: hotpink;
+}
+.buttons__symbol {
+  background-color: limegreen;
 }
