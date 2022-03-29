@@ -19,17 +19,13 @@ var buttonPercent = document.querySelector(".buttons__percent");
 var buttonPlusMinus = document.querySelector(".buttons__plusminus");
 var buttonClear = document.querySelector(".buttons__clear");
 var buttonEquals = document.querySelector(".buttons__equals");
-var buttonDecimalPoint = document.querySelector(".buttons__decimalpoint"); // log the variable to the console on click
-
-button1.addEventListener("click", function () {
-  console.log(button1.innerHTML); // log the variable to the display div
-
-  display.innerHTML += button1.innerHTML;
-});
+var buttonDecimalPoint = document.querySelector(".buttons__decimalpoint");
 var display = document.querySelector(".display__text"); // log the variable to the console on click
 
-button1.addEventListener("click", function () {
-  console.log(button1.innerHTML); // log the variable to the display div
-
-  display.innerHTML += button1.innerHTML;
+var buttons = document.querySelectorAll("button");
+buttons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    console.log(button.innerHTML);
+    display.innerHTML += button.innerHTML;
+  });
 }); // start performing calculations

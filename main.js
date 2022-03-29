@@ -19,21 +19,16 @@ const buttonClear = document.querySelector(".buttons__clear")
 const buttonEquals = document.querySelector(".buttons__equals")
 const buttonDecimalPoint = document.querySelector(".buttons__decimalpoint")
 
-
-// log the variable to the console on click
-button1.addEventListener("click", () => {
-  console.log(button1.innerHTML);
-  // log the variable to the display div
-  display.innerHTML += button1.innerHTML;
-})
-
 const display = document.querySelector(".display__text");
 
 // log the variable to the console on click
-button1.addEventListener("click", () => {
-  console.log(button1.innerHTML);
-  // log the variable to the display div
-  display.innerHTML += button1.innerHTML;
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    console.log(button.innerHTML);
+    display.innerHTML += button.innerHTML;
+  })
+
 })
 
 
