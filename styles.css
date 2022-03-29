@@ -21,4 +21,13 @@ body {
   height: 50px;
   background-color: grey;
   border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 200px;
+  height: 300px;
+  margin: auto;
 }

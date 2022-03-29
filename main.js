@@ -21,17 +21,35 @@ const buttonDecimalPoint = document.querySelector(".buttons__decimalpoint")
 
 const display = document.querySelector(".display__text");
 
-// log the variable to the console on click
-const buttons = document.querySelectorAll("button");
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    console.log(button.innerHTML);
-    display.innerHTML += button.innerHTML;
-  })
 
+const buttonsNumbers = document.querySelectorAll(".buttons__number");
+
+// log the variable to the console on click
+buttonsNumbers.forEach((button) => {
+  button.addEventListener("click", () => {
+      display.innerHTML += button.innerHTML;
+  
+  })
+})
+
+// create clear button function
+buttonClear.addEventListener("click", () => {
+  display.innerHTML = "";
+})
+
+// start performing calculations
+const addition = (num1, num2) => {
+  return num1+num2;
+}
+
+const num1 = buttonPlus.addEventListener("click", () => {
+  const num = parseInt(display.innerHTML);
+  return num;
 })
 
 
 
+// save what is in the display before + is clicked as a number
+// add + to the saved number
+// add what is in the display (as a number) when = is clicked
 
-// start performing calculations

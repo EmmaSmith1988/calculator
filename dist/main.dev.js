@@ -20,12 +20,26 @@ var buttonPlusMinus = document.querySelector(".buttons__plusminus");
 var buttonClear = document.querySelector(".buttons__clear");
 var buttonEquals = document.querySelector(".buttons__equals");
 var buttonDecimalPoint = document.querySelector(".buttons__decimalpoint");
-var display = document.querySelector(".display__text"); // log the variable to the console on click
+var display = document.querySelector(".display__text");
+var buttonsNumbers = document.querySelectorAll(".buttons__number"); // log the variable to the console on click
 
-var buttons = document.querySelectorAll("button");
-buttons.forEach(function (button) {
+buttonsNumbers.forEach(function (button) {
   button.addEventListener("click", function () {
-    console.log(button.innerHTML);
     display.innerHTML += button.innerHTML;
   });
+}); // create clear button function
+
+buttonClear.addEventListener("click", function () {
+  display.innerHTML = "";
 }); // start performing calculations
+
+var addition = function addition(num1, num2) {
+  return num1 + num2;
+};
+
+var num1 = buttonPlus.addEventListener("click", function () {
+  var num = parseInt(display.innerHTML);
+  return num;
+}); // save what is in the display before + is clicked as a number
+// add + to the saved number
+// add what is in the display (as a number) when = is clicked
