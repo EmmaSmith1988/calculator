@@ -24,11 +24,44 @@ const display = document.querySelector(".display__text");
 const buttonsNumbers = document.querySelectorAll(".buttons__number");
 const buttonsOperators = document.querySelectorAll(".buttons__operator");
 
-// loop through the array of buttons and update the display based on what is clicked
-
-// store the current display in a variable
+// Variables
 let currentDisplay = "";
+let currentOperator = "";
+let savedNumber = "";
 
+// Operator functions
+const addition = (num1, num2) => {
+  return parseInt(num1)+ parseInt(num2);
+}
+const subtraction = (num1, num2) => {
+  return parseInt(num1)- parseInt(num2);
+}
+const multiply = (num1, num2) => {
+  return parseInt(num1)*parseInt(num2);
+}
+const divide = (num1, num2) => {
+  return parseInt(num1)/parseInt(num2);
+}
+const equals = () => {
+  switch (currentOperator) {
+    case "+":
+      display.innerHTML = addition(savedNumber,currentDisplay).toFixed(7);
+      break;
+    case "-":
+      display.innerHTML = subtraction(savedNumber,currentDisplay).toFixed(7);
+      break;
+    case "*":
+      display.innerHTML = multiply(savedNumber,currentDisplay).toFixed(7);
+      break;
+    case "/":
+      display.innerHTML = divide(savedNumber,currentDisplay).toFixed(7);
+      break;
+  }
+  currentOperator = "";
+  currentDisplay = display.innerHTML;
+}
+
+// Event listeners
 buttonsNumbers.forEach((button) => {
   button.addEventListener("click", () => {
       display.innerHTML += button.innerHTML;
@@ -36,69 +69,30 @@ buttonsNumbers.forEach((button) => {
   })
 })
 
-// store current operator in a variable
-let currentOperator = "";
-
-// store the plus operator when its pushed, clear the display and move the currentDisplay to savedNumber
-let savedNumber = "";
-
 buttonsOperators.forEach((button) => {
   button.addEventListener("click", () => {
-    if (currentOperator) {
-      return;
+    if (currentOperator && savedNumber && currentDisplay) {
+      equals();
+      currentOperator = button.innerHTML;
+      display.innerHTML = "";
+      savedNumber = currentDisplay;
+      currentDisplay = "";
+    } else if (currentOperator) {
+      currentOperator = button.innerHTML;
     } else {
       currentOperator = button.innerHTML;
       display.innerHTML = "";
-      console.log(currentOperator);
       savedNumber = currentDisplay;
       currentDisplay = "";
     }
   })
 })
 
-// create clear button function
 buttonClear.addEventListener("click", () => {
   display.innerHTML = "";
   currentDisplay = "";
   currentOperator = "";
 })
-
-// start performing calculations
-const addition = (num1, num2) => {
-  return parseInt(num1)+ parseInt(num2);
-}
-
-const subtraction = (num1, num2) => {
-  return parseInt(num1)- parseInt(num2);
-}
-
-const multiply = (num1, num2) => {
-  return parseInt(num1)*parseInt(num2);
-}
-
-const divide = (num1, num2) => {
-  return parseInt(num1)/parseInt(num2);
-}
-
-// create function that runs when equals is pressed
-const equals = () => {
-  switch (currentOperator) {
-    case "+":
-      console.log(savedNumber);
-      console.log(currentDisplay);
-      display.innerHTML = addition(savedNumber,currentDisplay);
-      break;
-    case "-":
-      display.innerHTML = subtraction(savedNumber,currentDisplay);
-      break;
-    case "*":
-      display.innerHTML = multiply(savedNumber,currentDisplay);
-      break;
-    case "/":
-      display.innerHTML = divide(savedNumber,currentDisplay);
-      break;
-  }
-}
 
 buttonEquals.addEventListener("click", () => {
   equals();  

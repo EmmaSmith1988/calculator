@@ -22,39 +22,11 @@ var buttonEquals = document.querySelector(".buttons__equals");
 var buttonDecimalPoint = document.querySelector(".buttons__decimalpoint");
 var display = document.querySelector(".display__text");
 var buttonsNumbers = document.querySelectorAll(".buttons__number");
-var buttonsOperators = document.querySelectorAll(".buttons__operator"); // loop through the array of buttons and update the display based on what is clicked
-// store the current display in a variable
+var buttonsOperators = document.querySelectorAll(".buttons__operator"); // Variables
 
 var currentDisplay = "";
-buttonsNumbers.forEach(function (button) {
-  button.addEventListener("click", function () {
-    display.innerHTML += button.innerHTML;
-    currentDisplay += button.innerHTML;
-  });
-}); // store current operator in a variable
-
-var currentOperator = ""; // store the plus operator when its pushed, clear the display and move the currentDisplay to savedNumber
-
-var savedNumber = "";
-buttonsOperators.forEach(function (button) {
-  button.addEventListener("click", function () {
-    if (currentOperator) {
-      return;
-    } else {
-      currentOperator = button.innerHTML;
-      display.innerHTML = "";
-      console.log(currentOperator);
-      savedNumber = currentDisplay;
-      currentDisplay = "";
-    }
-  });
-}); // create clear button function
-
-buttonClear.addEventListener("click", function () {
-  display.innerHTML = "";
-  currentDisplay = "";
-  currentOperator = "";
-}); // start performing calculations
+var currentOperator = "";
+var savedNumber = ""; // Operator functions
 
 var addition = function addition(num1, num2) {
   return parseInt(num1) + parseInt(num2);
@@ -70,31 +42,61 @@ var multiply = function multiply(num1, num2) {
 
 var divide = function divide(num1, num2) {
   return parseInt(num1) / parseInt(num2);
-}; // create function that runs when equals is pressed
-
+};
 
 var equals = function equals() {
   switch (currentOperator) {
     case "+":
-      console.log(savedNumber);
-      console.log(currentDisplay);
-      display.innerHTML = addition(savedNumber, currentDisplay);
+      display.innerHTML = addition(savedNumber, currentDisplay).toFixed(7);
       break;
 
     case "-":
-      display.innerHTML = subtraction(savedNumber, currentDisplay);
+      display.innerHTML = subtraction(savedNumber, currentDisplay).toFixed(7);
       break;
 
     case "*":
-      display.innerHTML = multiply(savedNumber, currentDisplay);
+      display.innerHTML = multiply(savedNumber, currentDisplay).toFixed(7);
       break;
 
     case "/":
-      display.innerHTML = divide(savedNumber, currentDisplay);
+      display.innerHTML = divide(savedNumber, currentDisplay).toFixed(7);
       break;
   }
-};
 
+  currentOperator = "";
+  currentDisplay = display.innerHTML;
+}; // Event listeners
+
+
+buttonsNumbers.forEach(function (button) {
+  button.addEventListener("click", function () {
+    display.innerHTML += button.innerHTML;
+    currentDisplay += button.innerHTML;
+  });
+});
+buttonsOperators.forEach(function (button) {
+  button.addEventListener("click", function () {
+    if (currentOperator && savedNumber && currentDisplay) {
+      equals();
+      currentOperator = button.innerHTML;
+      display.innerHTML = "";
+      savedNumber = currentDisplay;
+      currentDisplay = "";
+    } else if (currentOperator) {
+      currentOperator = button.innerHTML;
+    } else {
+      currentOperator = button.innerHTML;
+      display.innerHTML = "";
+      savedNumber = currentDisplay;
+      currentDisplay = "";
+    }
+  });
+});
+buttonClear.addEventListener("click", function () {
+  display.innerHTML = "";
+  currentDisplay = "";
+  currentOperator = "";
+});
 buttonEquals.addEventListener("click", function () {
   equals();
 });
