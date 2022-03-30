@@ -42,17 +42,25 @@ let currentOperator = "";
 // store the plus operator when its pushed, clear the display and move the currentDisplay to savedNumber
 let savedNumber = "";
 
-buttonPlus.addEventListener("click", () => {
-  currentOperator = "+";
-  display.innerHTML = "";
-  savedNumber = currentDisplay;
-  currentDisplay = "";
+buttonsOperators.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (currentOperator) {
+      return;
+    } else {
+      currentOperator = button.innerHTML;
+      display.innerHTML = "";
+      console.log(currentOperator);
+      savedNumber = currentDisplay;
+      currentDisplay = "";
+    }
+  })
 })
 
 // create clear button function
 buttonClear.addEventListener("click", () => {
   display.innerHTML = "";
   currentDisplay = "";
+  currentOperator = "";
 })
 
 // start performing calculations
@@ -64,44 +72,36 @@ const subtraction = (num1, num2) => {
   return parseInt(num1)- parseInt(num2);
 }
 
+const multiply = (num1, num2) => {
+  return parseInt(num1)*parseInt(num2);
+}
+
+const divide = (num1, num2) => {
+  return parseInt(num1)/parseInt(num2);
+}
+
 // create function that runs when equals is pressed
-buttonEquals.addEventListener("click", () => {
+const equals = () => {
   switch (currentOperator) {
     case "+":
+      console.log(savedNumber);
+      console.log(currentDisplay);
       display.innerHTML = addition(savedNumber,currentDisplay);
       break;
     case "-":
       display.innerHTML = subtraction(savedNumber,currentDisplay);
       break;
-
+    case "*":
+      display.innerHTML = multiply(savedNumber,currentDisplay);
+      break;
+    case "/":
+      display.innerHTML = divide(savedNumber,currentDisplay);
+      break;
   }
-  
+}
+
+buttonEquals.addEventListener("click", () => {
+  equals();  
 });
 
-
-
-
-
-// buttonEquals.addEventListener("click", () => {
-//   const resultString = display.innerHTML.split(/(?=[+-/*])|(?<=[+-/*])/g);
-//   const firstNumber = parseInt(resultString[0]);
-//   const symbol = resultString[1];
-//   const secondNumber = parseInt(resultString[2]);
-//   if (symbol == "+") {
-//     display.innerHTML = firstNumber+secondNumber;
-//   } else if (symbol == "-") {
-//     display.innerHTML = firstNumber-secondNumber;
-//   } else if (symbol == "*") {
-//     display.innerHTML = firstNumber*secondNumber;
-//   } else if (symbol == "/") {
-//     display.innerHTML = firstNumber/secondNumber;
-//   }
-// })
-
-
-
-// take the first element in the array and convert it to a number
-
-
-// take the third element in the array and convert it to a number
 

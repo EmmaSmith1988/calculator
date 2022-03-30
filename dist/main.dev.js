@@ -36,16 +36,24 @@ buttonsNumbers.forEach(function (button) {
 var currentOperator = ""; // store the plus operator when its pushed, clear the display and move the currentDisplay to savedNumber
 
 var savedNumber = "";
-buttonPlus.addEventListener("click", function () {
-  currentOperator = "+";
-  display.innerHTML = "";
-  savedNumber = currentDisplay;
-  currentDisplay = "";
+buttonsOperators.forEach(function (button) {
+  button.addEventListener("click", function () {
+    if (currentOperator) {
+      return;
+    } else {
+      currentOperator = button.innerHTML;
+      display.innerHTML = "";
+      console.log(currentOperator);
+      savedNumber = currentDisplay;
+      currentDisplay = "";
+    }
+  });
 }); // create clear button function
 
 buttonClear.addEventListener("click", function () {
   display.innerHTML = "";
   currentDisplay = "";
+  currentOperator = "";
 }); // start performing calculations
 
 var addition = function addition(num1, num2) {
@@ -54,33 +62,39 @@ var addition = function addition(num1, num2) {
 
 var subtraction = function subtraction(num1, num2) {
   return parseInt(num1) - parseInt(num2);
+};
+
+var multiply = function multiply(num1, num2) {
+  return parseInt(num1) * parseInt(num2);
+};
+
+var divide = function divide(num1, num2) {
+  return parseInt(num1) / parseInt(num2);
 }; // create function that runs when equals is pressed
 
 
-buttonEquals.addEventListener("click", function () {
+var equals = function equals() {
   switch (currentOperator) {
     case "+":
+      console.log(savedNumber);
+      console.log(currentDisplay);
       display.innerHTML = addition(savedNumber, currentDisplay);
       break;
 
     case "-":
       display.innerHTML = subtraction(savedNumber, currentDisplay);
       break;
+
+    case "*":
+      display.innerHTML = multiply(savedNumber, currentDisplay);
+      break;
+
+    case "/":
+      display.innerHTML = divide(savedNumber, currentDisplay);
+      break;
   }
-}); // buttonEquals.addEventListener("click", () => {
-//   const resultString = display.innerHTML.split(/(?=[+-/*])|(?<=[+-/*])/g);
-//   const firstNumber = parseInt(resultString[0]);
-//   const symbol = resultString[1];
-//   const secondNumber = parseInt(resultString[2]);
-//   if (symbol == "+") {
-//     display.innerHTML = firstNumber+secondNumber;
-//   } else if (symbol == "-") {
-//     display.innerHTML = firstNumber-secondNumber;
-//   } else if (symbol == "*") {
-//     display.innerHTML = firstNumber*secondNumber;
-//   } else if (symbol == "/") {
-//     display.innerHTML = firstNumber/secondNumber;
-//   }
-// })
-// take the first element in the array and convert it to a number
-// take the third element in the array and convert it to a number
+};
+
+buttonEquals.addEventListener("click", function () {
+  equals();
+});
