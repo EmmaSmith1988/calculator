@@ -22,48 +22,81 @@ const buttonDecimalPoint = document.querySelector(".buttons__decimalpoint")
 const display = document.querySelector(".display__text");
 
 const buttonsNumbers = document.querySelectorAll(".buttons__number");
+const buttonsOperators = document.querySelectorAll(".buttons__operator");
 
 // loop through the array of buttons and update the display based on what is clicked
+
+// store the current display in a variable
+let currentDisplay = "";
+
 buttonsNumbers.forEach((button) => {
   button.addEventListener("click", () => {
       display.innerHTML += button.innerHTML;
+      currentDisplay += button.innerHTML;
   })
+})
+
+// store current operator in a variable
+let currentOperator = "";
+
+// store the plus operator when its pushed, clear the display and move the currentDisplay to savedNumber
+let savedNumber = "";
+
+buttonPlus.addEventListener("click", () => {
+  currentOperator = "+";
+  display.innerHTML = "";
+  savedNumber = currentDisplay;
+  currentDisplay = "";
 })
 
 // create clear button function
 buttonClear.addEventListener("click", () => {
   display.innerHTML = "";
+  currentDisplay = "";
 })
 
 // start performing calculations
-// const addition = (num1, num2) => {
-//   return num1+num2;
-// }
+const addition = (num1, num2) => {
+  return parseInt(num1)+ parseInt(num2);
+}
 
-// const num1 = buttonPlus.addEventListener("click", () => {
-//   const num = parseInt(display.innerHTML);
-//   return num;
-// })
+const subtraction = (num1, num2) => {
+  return parseInt(num1)- parseInt(num2);
+}
 
-// save what is in the display before + is clicked as a number
-// add + to the saved number
-// add what is in the display (as a number) when = is clicked
-
+// create function that runs when equals is pressed
 buttonEquals.addEventListener("click", () => {
-  const resultString = display.innerHTML.split(/(?=[+-/*])|(?<=[+-/*])/g);
-  const firstNumber = parseInt(resultString[0]);
-  const symbol = resultString[1];
-  const secondNumber = parseInt(resultString[2]);
-  if (symbol == "+") {
-    display.innerHTML = firstNumber+secondNumber;
-  } else if (symbol == "-") {
-    display.innerHTML = firstNumber-secondNumber;
-  } else if (symbol == "*") {
-    display.innerHTML = firstNumber*secondNumber;
-  } else if (symbol == "/") {
-    display.innerHTML = firstNumber/secondNumber;
+  switch (currentOperator) {
+    case "+":
+      display.innerHTML = addition(savedNumber,currentDisplay);
+      break;
+    case "-":
+      display.innerHTML = subtraction(savedNumber,currentDisplay);
+      break;
+
   }
-})
+  
+});
+
+
+
+
+
+// buttonEquals.addEventListener("click", () => {
+//   const resultString = display.innerHTML.split(/(?=[+-/*])|(?<=[+-/*])/g);
+//   const firstNumber = parseInt(resultString[0]);
+//   const symbol = resultString[1];
+//   const secondNumber = parseInt(resultString[2]);
+//   if (symbol == "+") {
+//     display.innerHTML = firstNumber+secondNumber;
+//   } else if (symbol == "-") {
+//     display.innerHTML = firstNumber-secondNumber;
+//   } else if (symbol == "*") {
+//     display.innerHTML = firstNumber*secondNumber;
+//   } else if (symbol == "/") {
+//     display.innerHTML = firstNumber/secondNumber;
+//   }
+// })
 
 
 
@@ -71,11 +104,4 @@ buttonEquals.addEventListener("click", () => {
 
 
 // take the third element in the array and convert it to a number
-
-
-
-
-
-
-
 

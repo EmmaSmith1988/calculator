@@ -21,42 +21,66 @@ var buttonClear = document.querySelector(".buttons__clear");
 var buttonEquals = document.querySelector(".buttons__equals");
 var buttonDecimalPoint = document.querySelector(".buttons__decimalpoint");
 var display = document.querySelector(".display__text");
-var buttonsNumbers = document.querySelectorAll(".buttons__number"); // loop through the array of buttons and update the display based on what is clicked
+var buttonsNumbers = document.querySelectorAll(".buttons__number");
+var buttonsOperators = document.querySelectorAll(".buttons__operator"); // loop through the array of buttons and update the display based on what is clicked
+// store the current display in a variable
 
+var currentDisplay = "";
 buttonsNumbers.forEach(function (button) {
   button.addEventListener("click", function () {
     display.innerHTML += button.innerHTML;
+    currentDisplay += button.innerHTML;
   });
+}); // store current operator in a variable
+
+var currentOperator = ""; // store the plus operator when its pushed, clear the display and move the currentDisplay to savedNumber
+
+var savedNumber = "";
+buttonPlus.addEventListener("click", function () {
+  currentOperator = "+";
+  display.innerHTML = "";
+  savedNumber = currentDisplay;
+  currentDisplay = "";
 }); // create clear button function
 
 buttonClear.addEventListener("click", function () {
   display.innerHTML = "";
+  currentDisplay = "";
 }); // start performing calculations
-// const addition = (num1, num2) => {
-//   return num1+num2;
-// }
-// const num1 = buttonPlus.addEventListener("click", () => {
-//   const num = parseInt(display.innerHTML);
-//   return num;
-// })
-// save what is in the display before + is clicked as a number
-// add + to the saved number
-// add what is in the display (as a number) when = is clicked
+
+var addition = function addition(num1, num2) {
+  return parseInt(num1) + parseInt(num2);
+};
+
+var subtraction = function subtraction(num1, num2) {
+  return parseInt(num1) - parseInt(num2);
+}; // create function that runs when equals is pressed
+
 
 buttonEquals.addEventListener("click", function () {
-  var resultString = display.innerHTML.split(/(?=[+-/*])|(?<=[+-/*])/g);
-  var firstNumber = parseInt(resultString[0]);
-  var symbol = resultString[1];
-  var secondNumber = parseInt(resultString[2]);
+  switch (currentOperator) {
+    case "+":
+      display.innerHTML = addition(savedNumber, currentDisplay);
+      break;
 
-  if (symbol == "+") {
-    display.innerHTML = firstNumber + secondNumber;
-  } else if (symbol == "-") {
-    display.innerHTML = firstNumber - secondNumber;
-  } else if (symbol == "*") {
-    display.innerHTML = firstNumber * secondNumber;
-  } else if (symbol == "/") {
-    display.innerHTML = firstNumber / secondNumber;
+    case "-":
+      display.innerHTML = subtraction(savedNumber, currentDisplay);
+      break;
   }
-}); // take the first element in the array and convert it to a number
+}); // buttonEquals.addEventListener("click", () => {
+//   const resultString = display.innerHTML.split(/(?=[+-/*])|(?<=[+-/*])/g);
+//   const firstNumber = parseInt(resultString[0]);
+//   const symbol = resultString[1];
+//   const secondNumber = parseInt(resultString[2]);
+//   if (symbol == "+") {
+//     display.innerHTML = firstNumber+secondNumber;
+//   } else if (symbol == "-") {
+//     display.innerHTML = firstNumber-secondNumber;
+//   } else if (symbol == "*") {
+//     display.innerHTML = firstNumber*secondNumber;
+//   } else if (symbol == "/") {
+//     display.innerHTML = firstNumber/secondNumber;
+//   }
+// })
+// take the first element in the array and convert it to a number
 // take the third element in the array and convert it to a number

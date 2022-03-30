@@ -1,3 +1,9 @@
+// @import
+//   'base/base',
+//   'base/fonts';
+//   // 'base/typography',
+//   // 'base/helpers';
+
 @font-face {
   font-family: "digital";
   src: url(./digital.ttf);
@@ -59,7 +65,7 @@ body {
   }
 
   &__symbol {
-    background-color: lightgray;
+    background-color: gray;
   }
 
   &__multiply {
