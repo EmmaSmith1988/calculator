@@ -31,31 +31,54 @@ let savedNumber = "";
 
 // Operator functions
 const addition = (num1, num2) => {
-  return parseInt(num1)+ parseInt(num2);
+  return parseFloat(num1)+ parseFloat(num2);
 }
 const subtraction = (num1, num2) => {
-  return parseInt(num1)- parseInt(num2);
+  return parseFloat(num1)- parseFloat(num2);
 }
 const multiply = (num1, num2) => {
-  return parseInt(num1)*parseInt(num2);
+  return parseFloat(num1)*parseFloat(num2);
 }
 const divide = (num1, num2) => {
-  return parseInt(num1)/parseInt(num2);
+  return parseFloat(num1)/parseFloat(num2);
+}
+
+const changeSign = () => {
+   return display.innerHTML = `-${currentDisplay}`;
+}
+
+const percentage = () => {
+  switch (currentOperator) {
+    case "+":
+      display.innerHTML = parseFloat(savedNumber)+(parseFloat(currentDisplay)/100);
+      break;
+    case "-":
+      display.innerHTML = parseFloat(savedNumber)-(parseFloat(currentDisplay)/100);
+      break;
+    case "*":
+      display.innerHTML = parseFloat(savedNumber)*(parseFloat(currentDisplay)/100);
+      break;
+    case "/":
+      display.innerHTML = parseFloat(savedNumber)/(parseFloat(currentDisplay)/100);
+      break;
+  }
 }
 const equals = () => {
   switch (currentOperator) {
     case "+":
-      display.innerHTML = addition(savedNumber,currentDisplay).toFixed(7);
+      display.innerHTML = addition(savedNumber,currentDisplay);
       break;
     case "-":
-      display.innerHTML = subtraction(savedNumber,currentDisplay).toFixed(7);
+      display.innerHTML = subtraction(savedNumber,currentDisplay);
       break;
     case "*":
-      display.innerHTML = multiply(savedNumber,currentDisplay).toFixed(7);
+      display.innerHTML = multiply(savedNumber,currentDisplay);
       break;
     case "/":
-      display.innerHTML = divide(savedNumber,currentDisplay).toFixed(7);
+      display.innerHTML = divide(savedNumber,currentDisplay);
       break;
+    default:
+      display.innerHTML = "error";
   }
   currentOperator = "";
   currentDisplay = display.innerHTML;
@@ -64,10 +87,18 @@ const equals = () => {
 // Event listeners
 buttonsNumbers.forEach((button) => {
   button.addEventListener("click", () => {
+    if (currentDisplay.length > 7) {
+      return;
+    } else {
       display.innerHTML += button.innerHTML;
       currentDisplay += button.innerHTML;
+    }
   })
 })
+
+buttonPlusMinus.addEventListener("click", changeSign);
+
+buttonPercent.addEventListener("click", percentage);
 
 buttonsOperators.forEach((button) => {
   button.addEventListener("click", () => {
@@ -94,8 +125,8 @@ buttonClear.addEventListener("click", () => {
   currentOperator = "";
 })
 
-buttonEquals.addEventListener("click", () => {
-  equals();  
-});
+buttonEquals.addEventListener("click", equals);
+
+display.innerHTML = -5*3;
 
 

@@ -2,6 +2,10 @@
   font-family: "digital";
   src: url(./digital.ttf);
 }
+.display {
+  font-family: "digital";
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -29,7 +33,6 @@ body {
   color: whitesmoke;
   font-size: 60px;
   text-align: end;
-  font-family: "digital";
 }
 
 .buttons {
