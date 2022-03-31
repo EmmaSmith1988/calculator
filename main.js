@@ -44,7 +44,14 @@ const divide = (num1, num2) => {
 }
 
 const changeSign = () => {
-   return display.innerHTML = `-${currentDisplay}`;
+  if (currentDisplay.charAt(0) != "-") {
+    display.innerHTML = `-${currentDisplay}`;
+    currentDisplay = `-${currentDisplay}`;
+  } else if (currentDisplay.charAt(0) == "-") {
+    display.innerHTML = currentDisplay.substring(1);
+    currentDisplay = currentDisplay.substring(1);
+  }
+  return;
 }
 
 const percentage = () => {
@@ -126,7 +133,5 @@ buttonClear.addEventListener("click", () => {
 })
 
 buttonEquals.addEventListener("click", equals);
-
-display.innerHTML = -5*3;
 
 
