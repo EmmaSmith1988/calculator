@@ -71,7 +71,7 @@ body {
 .calculator {
   width: 250px;
   height: 400px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .display {
