@@ -1,0 +1,29 @@
+.buttons {
+  &__number {
+    background-color: hotpink;
+  }
+
+  &__symbol {
+    background-color: gray;
+  }
+
+  &__operator {
+    background-color: limegreen;
+  }
+
+  &__equals {
+    background-color: limegreen;
+  }
+
+  &__hidden {
+    background-color: black;
+  }
+}
+
+.calculator {
+  background-color: black;
+}
+
+.display {
+  color: whitesmoke;
+}

@@ -6,10 +6,59 @@
   font-family: "digital";
 }
 
+.buttons * {
+  font-size: 20px;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.buttons {
+  width: 250px;
+  height: 300px;
+  margin-left: 5px;
+}
+.buttons * {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: none;
+  color: whitesmoke;
+}
+.buttons *:active {
+  box-shadow: inset 0px 0px 10px black;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.buttons__number {
+  background-color: hotpink;
+}
+.buttons__symbol {
+  background-color: gray;
+}
+.buttons__operator {
+  background-color: limegreen;
+}
+.buttons__equals {
+  background-color: limegreen;
+}
+.buttons__hidden {
+  background-color: black;
+}
+
+.calculator {
+  background-color: black;
+}
+
+.display {
+  color: whitesmoke;
 }
 
 body {
@@ -21,7 +70,6 @@ body {
 
 .calculator {
   width: 250px;
-  background-color: black;
   height: 400px;
   border-radius: 5px;
 }
@@ -30,50 +78,6 @@ body {
   height: 50px;
   border-radius: 10px;
   margin: 20px 10px 20px 10px;
-  color: whitesmoke;
   font-size: 60px;
   text-align: end;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: 250px;
-  height: 300px;
-  margin-left: 5px;
-}
-.buttons * {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  border: none;
-  color: whitesmoke;
-  font-size: 20px;
-}
-.buttons *:active {
-  box-shadow: inset 0px 0px 10px black;
-}
-.buttons__number {
-  background-color: hotpink;
-}
-.buttons__symbol {
-  background-color: gray;
-}
-.buttons__multiply {
-  background-color: limegreen;
-}
-.buttons__minus {
-  background-color: limegreen;
-}
-.buttons__divide {
-  background-color: limegreen;
-}
-.buttons__plus {
-  background-color: limegreen;
-}
-.buttons__equals {
-  background-color: limegreen;
-}
-.buttons__hidden {
-  background-color: black;
 }
