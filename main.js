@@ -61,10 +61,10 @@ const percentage = () => {
     case "-":
       display.innerHTML = number1integer-(number2integer/100);
       break;
-    case "*":
+    case "x":
       display.innerHTML = number1integer*(number2integer/100);
       break;
-    case "/":
+    case "÷":
       display.innerHTML = number1integer/(number2integer/100);
       break;
   }
@@ -90,11 +90,11 @@ const equals = () => {
       result = subtraction(number1integer,number2integer);
       checkLength(result);
       break;
-    case "*":
+    case "x":
       result = multiply(number1integer,number2integer);
       checkLength(result);
       break;
-    case "/":
+    case "÷":
       result = divide(number1integer,number2integer);
       checkLength(result);
       break;

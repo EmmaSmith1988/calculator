@@ -14,4 +14,28 @@
   *:active {
     box-shadow: inset 0px 0px 10px black;
   }
+
+  &__number:hover {
+    background-color: rgba(255, 105, 180, 0.753);
+  }
+
+  &__symbol:hover {
+    background-color: rgba(128, 128, 128, 0.737);
+  }
+
+  &__operator:hover {
+    background-color: rgba(50, 205, 50, 0.742);
+  }
+
+  &__clear {
+    color: rgba(208, 6, 6, 0.97);
+    font-weight: bolder;
+  }
+}
+
+#zero {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 112px;
+  border-radius: 30px;
 }
