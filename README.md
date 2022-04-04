@@ -40,7 +40,7 @@ The result of a chained operation is stored, but does not appear on the screen t
 
 ## It looks like this:
 
-[calculator](https://user-images.githubusercontent.com/72084805/161583591-9460b4de-10ae-4698-b301-7dd5b9ff2fe3.png)
+![calculator](https://user-images.githubusercontent.com/72084805/161583591-9460b4de-10ae-4698-b301-7dd5b9ff2fe3.png)
 
 ## You can find my calculator here
 
