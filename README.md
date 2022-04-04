@@ -40,4 +40,5 @@ The result of a chained operation is stored, but does not appear on the screen t
 
 ## It looks like this:
 
+![calculator](https://user-images.githubusercontent.com/72084805/161582407-0cd95926-a5e3-4f1b-8845-92f23ddaa514.png)
 
