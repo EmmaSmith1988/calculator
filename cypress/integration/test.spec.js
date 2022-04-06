@@ -126,4 +126,109 @@ describe("Chained operations", () => {
     //Assert
     cy.get("[data-cy=display]").should("have.text", 30);
   })
+  it("Can perform chained multiplication and division, 9 * 5 / 2 * 4 / 10 = 9", () => {
+    cy.visit("http://127.0.0.1:5501/index.html")
+    //Act
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=multiply").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=divide").click();
+    cy.get("[data-cy=two").click();
+    cy.get("[data-cy=multiply").click();
+    cy.get("[data-cy=four").click();
+    cy.get("[data-cy=divide").click();
+    cy.get("[data-cy=one").click();
+    cy.get("[data-cy=zero").click();
+    cy.get("[data-cy=equals").click();
+    //Assert
+    cy.get("[data-cy=display]").should("have.text", 9);
+  })
+})
+
+describe("Non-basic operations", () => {
+  it("Can perform percentage calculations, 200 * 25% = 50", () => {
+    //Arrange
+    cy.visit("http://127.0.0.1:5501/index.html")
+    //Act
+    cy.get("[data-cy=two").click();
+    cy.get("[data-cy=zero").click();
+    cy.get("[data-cy=zero").click();
+    cy.get("[data-cy=multiply").click();
+    cy.get("[data-cy=two").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=percent").click();
+    //Assert
+    cy.get("[data-cy=display]").should("have.text", 50);
+  })
+  it("Can reverse a number from positive to negative, 67 becomes -67", () => {
+    //Arrange
+    cy.visit("http://127.0.0.1:5501/index.html")
+    //Act
+    cy.get("[data-cy=six").click();
+    cy.get("[data-cy=seven").click();
+    cy.get("[data-cy=plusminus").click();
+    //Assert
+    cy.get("[data-cy=display]").should("have.text", -67);
+  })
+  it("Can cap a decimal result to 2 decimal places, 25 / 6 = 4.16", () => {
+     //Arrange
+     cy.visit("http://127.0.0.1:5501/index.html")
+     //Act
+     cy.get("[data-cy=two").click();
+     cy.get("[data-cy=five").click();
+     cy.get("[data-cy=divide").click();
+     cy.get("[data-cy=six").click();
+     cy.get("[data-cy=equals").click();
+     //Assert
+     cy.get("[data-cy=display]").should("have.text", 4.17);
+  })
+  it("Stops the user from entering multiple decimal points in one number, 3.1.4.3 = 3.143", () => {
+    //Arrange
+    cy.visit("http://127.0.0.1:5501/index.html")
+    //Act
+    cy.get("[data-cy=three").click();
+    cy.get("[data-cy=decimalpoint").click();
+    cy.get("[data-cy=one").click();
+    cy.get("[data-cy=decimalpoint").click();
+    cy.get("[data-cy=four").click();
+    cy.get("[data-cy=decimalpoint").click();
+    cy.get("[data-cy=three").click();
+    //Assert
+    cy.get("[data-cy=display]").should("have.text", 3.143);
+  })
+  it("Stops the user entering more than 8 digits onto the display, 5555555555 = 55555555", () => {
+    //Arrange
+    cy.visit("http://127.0.0.1:5501/index.html")
+    //Act
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=five").click();
+    cy.get("[data-cy=five").click();
+    //Assert
+    cy.get("[data-cy=display]").should("have.text", 55555555);
+  })
+  it("Displays a value of 'exceeded' if the result of the sum is too big for the display, 99999 * 9999 = exceeded", () => {
+    //Arrange
+    cy.visit("http://127.0.0.1:5501/index.html")
+    //Act
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=multiply").click();
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=nine").click();
+    cy.get("[data-cy=equals").click();
+    //Assert
+    cy.get("[data-cy=display]").should("have.text", "exceeded");
+  })
 })
